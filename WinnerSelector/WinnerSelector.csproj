@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Candidate.cs" />
     <Compile Include="CandidateListBuilder.cs" />
-    <Compile Include="DataInterpreter.cs" />
+    <Compile Include="TabDelimitedDataInterpreter.cs" />
     <Compile Include="IDataFileReader.cs" />
     <Compile Include="IDataInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

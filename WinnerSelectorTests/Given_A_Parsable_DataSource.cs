@@ -25,7 +25,7 @@ namespace WinnerSelectorTests
             _stringsToReturn = new List<string>() { "First Person", "Second Person" };
             reader.Stub(r => r.ReadFile(pathToFile)).Return(_stringsToReturn);
 
-            var listBuilder = new CandidateListBuilder(reader, new DataInterpreter());
+            var listBuilder = new CandidateListBuilder(reader, new TabDelimitedDataInterpreter());
 
             _candidates = listBuilder.Build(pathToFile);
         }

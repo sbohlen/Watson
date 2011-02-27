@@ -14,9 +14,9 @@ namespace WinnerSelectorTests
         [SetUp]
         public void When_Parsing()
         {
-            var interpreter = new DataInterpreter();
+            var interpreter = new TabDelimitedDataInterpreter();
 
-            var data = new List<string>() { "First\tPerson", "Second\tPerson" };
+            var data = new List<string>() { "First\tPerson", "Second\tPerson", "Third\tPerson" };
 
             _results = interpreter.ConvertData(data);
         }
@@ -26,7 +26,13 @@ namespace WinnerSelectorTests
         {
             Assert.That(_results.ElementAt(0), Is.EqualTo(string.Format("First{0}Person", Environment.NewLine)));
             Assert.That(_results.ElementAt(1), Is.EqualTo(string.Format("Second{0}Person", Environment.NewLine)));
-            Assert.That(_results.Count(),Is.EqualTo(2));
+            Assert.That(_results.ElementAt(2), Is.EqualTo(string.Format("Third{0}Person", Environment.NewLine)));
+        }
+
+        [Test]
+        public void Can_Convert_All_Data_Elements()
+        {
+            Assert.That(_results.Count(), Is.EqualTo(3));
         }
     }
 }

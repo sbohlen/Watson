@@ -20,7 +20,7 @@ namespace WinnerSelectorTests
         [Test]
         public void Can_Return_Entire_File()
         {
-            Assert.That(_lines.Count(), Is.EqualTo(6));
+            Assert.That(_lines.Count(), Is.EqualTo(5));
         }
     }
 }

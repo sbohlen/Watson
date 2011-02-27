@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WinnerSelector
 {
-    public class DataInterpreter : IDataInterpreter
+    public class TabDelimitedDataInterpreter : IDataInterpreter
     {
         public IEnumerable<string> ConvertData(IEnumerable<string> data)
         {
