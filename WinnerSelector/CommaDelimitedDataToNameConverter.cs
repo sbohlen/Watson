@@ -9,10 +9,28 @@ namespace WinnerSelector
         {
             foreach (var item in data)
             {
+                if (string.IsNullOrEmpty(item))
+                {
+                    continue;
+                }
+
                 var split = item.Split(",".ToCharArray());
-                
-                //var corrected = item.Replace("\t", Environment.NewLine);
-                yield return new Name(split[0], split[1]);
+
+                string firstname;
+                string lastname;
+
+                if (split.Length > 1)
+                {
+                    firstname = split[0];
+                    lastname = split[1];
+                }
+                else
+                {
+                    firstname = item;
+                    lastname = "n/a";
+                }
+
+                yield return new Name(firstname, lastname);
             }
         }
     }
