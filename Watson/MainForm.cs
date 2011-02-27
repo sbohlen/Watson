@@ -42,7 +42,7 @@ namespace Watson
             txtTheWinner.Text = string.Empty;
 
             string response;
-            
+
             try
             {
                 Candidate winner = _candidateSelector.Pick();
@@ -56,8 +56,7 @@ namespace Watson
 
             txtTheWinner.Text = response;
 
-            //have to start the text-to-speech engine on a different thread else it introduces unacceptable delay into the UI update thread
-            new Task(() => _speaker.Speak(response)).Start();
+            _speaker.Speak(response);
         }
     }
 }

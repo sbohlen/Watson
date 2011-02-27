@@ -9,7 +9,7 @@ namespace WinnerSelectorTests
         [Test]
         public void Can_Talk()
         {
-            TextToSpeech tts = new TextToSpeech();
+            var tts = new FemaleVoiceSynthesizer();
             tts.Speak("this is a test.");
         }
     }
