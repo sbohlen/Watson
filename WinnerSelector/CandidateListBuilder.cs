@@ -1,44 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace WinnerSelector
 {
     public class CandidateListBuilder
     {
-        private IDataFileReader _reader;
+        private readonly IDataInterpreter _interpreter;
+        private readonly IDataFileReader _reader;
 
-        public CandidateListBuilder(IDataFileReader reader)
+        public CandidateListBuilder(IDataFileReader reader, IDataInterpreter interpreter)
         {
             _reader = reader;
-        }
-
-        /// <summary>
-        /// Converts the data to names.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <returns></returns>
-        private IEnumerable<string> ConvertDataToNames(IEnumerable<string> data)
-        {
-            foreach (var item in data)
-            {
-                var corrected = item.Replace("\t", Environment.NewLine);
-                yield return corrected;
-            }
-
+            _interpreter = interpreter;
         }
 
 
         public IEnumerable<Candidate> Build(string pathToFile)
         {
-            var data = _reader.ReadFile(pathToFile);
-            var names = ConvertDataToNames(data);
+            IEnumerable<string> data = _reader.ReadFile(pathToFile);
+            IEnumerable<string> names = _interpreter.ConvertData(data);
 
-            foreach (var name in names)
+            foreach (string name in names)
             {
                 yield return new Candidate(name);
             }
-
-
         }
     }
 }

@@ -42,8 +42,9 @@
   <ItemGroup>
     <Compile Include="Candidate.cs" />
     <Compile Include="CandidateListBuilder.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="DataInterpreter.cs" />
     <Compile Include="IDataFileReader.cs" />
+    <Compile Include="IDataInterpreter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

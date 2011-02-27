@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,6 @@ using WinnerSelector;
 
 namespace WinnerSelectorTests
 {
-
     [TestFixture]
     public class Given_A_Parsable_DataSource
     {
@@ -21,12 +20,12 @@ namespace WinnerSelectorTests
         public void When_Reading_The_List()
         {
             string pathToFile = "data.txt";
-            
+
             IDataFileReader reader = MockRepository.GenerateStub<IDataFileReader>();
-            _stringsToReturn = new List<string>() {"First Person", "Second Person"};
+            _stringsToReturn = new List<string>() { "First Person", "Second Person" };
             reader.Stub(r => r.ReadFile(pathToFile)).Return(_stringsToReturn);
 
-            var listBuilder = new CandidateListBuilder(reader);
+            var listBuilder = new CandidateListBuilder(reader, new DataInterpreter());
 
             _candidates = listBuilder.Build(pathToFile);
         }
