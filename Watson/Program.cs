@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using WinnerSelector;
 
 namespace Watson
 {
@@ -15,7 +16,7 @@ namespace Watson
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Watson());
+            Application.Run(new Watson(new CandidateListBuilder(new DataFileReader(), new CommaDelimitedDataToNameConverter())));
         }
     }
 }

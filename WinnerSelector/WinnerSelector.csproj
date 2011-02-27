@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="Candidate.cs" />
     <Compile Include="CandidateListBuilder.cs" />
+    <Compile Include="CandidateSelector.cs" />
     <Compile Include="DataFileReader.cs" />
     <Compile Include="CommaDelimitedDataToNameConverter.cs" />
     <Compile Include="IDataFileReader.cs" />
     <Compile Include="IDataToNameConverter.cs" />
     <Compile Include="Name.cs" />
+    <Compile Include="NoCandidatesFromWhichToSelect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

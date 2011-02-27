@@ -1,61 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-
+using WinnerSelector;
 
 namespace Watson
 {
     public partial class Watson : Form
     {
-        private IEnumerable<string> _items;
-        private readonly Random _generator = new Random();
+        private readonly CandidateListBuilder _candidateListBuilder;
+        private CandidateSelector _candidateSelector;
 
-        public Watson()
+        public Watson(CandidateListBuilder candidateListBuilder)
         {
             InitializeComponent();
+            _candidateListBuilder = candidateListBuilder;
         }
 
-        private void LoadAndParseDataFile()
+        private void PrepareForSelection()
         {
-            var data = ParseCsv("data.txt");
-            _items = ProcessData(data);
-
-        }
-
-        private IEnumerable<string> ProcessData(IEnumerable<string> data)
-        {
-            foreach (var item in data)
-            {
-                var corrected = item.Replace("\t", Environment.NewLine);
-                yield return corrected;
-            }
-            
-        }
-
-        private List<string> ParseCsv(string path)
-        {
-            var data = new List<string>();
-
-            try
-            {
-                using (var readFile = new StreamReader(path))
-                {
-                    string line;
-
-                    while ((line = readFile.ReadLine()) != null)
-                    {
-                        data.Add(line);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-            return data;
+            IEnumerable<Candidate> candidates = _candidateListBuilder.Build("data.txt");
+            _candidateSelector = new CandidateSelector(candidates);
         }
 
         private void SetInitialControlState()
@@ -66,12 +30,21 @@ namespace Watson
         private void Watson_Load(object sender, EventArgs e)
         {
             SetInitialControlState();
-            LoadAndParseDataFile();
+            PrepareForSelection();
         }
 
         private void btnSelectWinner_Click(object sender, EventArgs e)
         {
-            txtTheWinner.Text = _items.ElementAt(_generator.Next(1, _items.Count()));
+            try
+            {
+                Candidate winner = _candidateSelector.Pick();
+                txtTheWinner.Text = string.Format("{0}{1}{2}", winner.Name.Firstname, Environment.NewLine,
+                                                  winner.Name.Lastname);
+            }
+            catch (NoCandidatesFromWhichToSelect)
+            {
+                txtTheWinner.Text = "Sorry, no potential winners left!";
+            }
         }
     }
 }

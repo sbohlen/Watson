@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Given_A_Collection_of_Data.cs" />
     <Compile Include="Given_A_Data_File.cs" />
+    <Compile Include="Given_A_List_of_Candidates.cs" />
     <Compile Include="Given_A_Parsable_DataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
