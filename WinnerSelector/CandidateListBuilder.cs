@@ -5,15 +5,12 @@ namespace WinnerSelector
 {
     public class CandidateListBuilder
     {
-        private readonly string _pathToFile;
         private IDataFileReader _reader;
 
-        public CandidateListBuilder(string pathToFile, IDataFileReader reader)
+        public CandidateListBuilder(IDataFileReader reader)
         {
-            _pathToFile = pathToFile;
             _reader = reader;
         }
-
 
         /// <summary>
         /// Converts the data to names.
@@ -30,12 +27,10 @@ namespace WinnerSelector
 
         }
 
-      
 
-
-        public IEnumerable<Candidate> Build()
+        public IEnumerable<Candidate> Build(string pathToFile)
         {
-            var data = _reader.ReadFile(_pathToFile);
+            var data = _reader.ReadFile(pathToFile);
             var names = ConvertDataToNames(data);
 
             foreach (var name in names)
