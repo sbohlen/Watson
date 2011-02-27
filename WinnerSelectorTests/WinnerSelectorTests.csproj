@@ -40,6 +40,9 @@
     <Reference Include="pnunit.framework">
       <HintPath>..\packages\NUnit.2.5.9.10348\lib\pnunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Candidate.cs" />
+    <Compile Include="CandidateListBuilder.cs" />
+    <Compile Include="Given_A_Data_File.cs" />
+    <Compile Include="Given_A_Parsable_DataSource.cs" />
+    <Compile Include="IDataFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
