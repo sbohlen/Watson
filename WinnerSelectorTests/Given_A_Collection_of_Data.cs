@@ -39,12 +39,32 @@ namespace WinnerSelectorTests
         public void Can_Ignore_Empty_Data()
         {
             Assert.That(!_results.Contains(new Name(string.Empty, string.Empty)));
+            Assert.That(!_results.Contains(new Name(string.Empty, "not found")));
         }
 
         [Test]
         public void Can_Replace_Missing_Lastname()
         {
-            Assert.That(_results.ElementAt(3), Is.EqualTo(new Name("Fourth", "n/a")));
+            Assert.That(_results.ElementAt(3), Is.EqualTo(new Name("Fourth", "not found")));
+        }
+    }
+
+    [TestFixture]
+    public class Given_A_Name
+    {
+        private Name _name;
+
+        [SetUp]
+        public void When_Setting_First_and_Last_Names()
+        {
+            _name = new Name("First", "Last");
+        }
+
+
+        [Test]
+        public void Can_Return_Fullname()
+        {
+            Assert.That(_name.Fullname, Is.EqualTo("First Last"));
         }
     }
 }

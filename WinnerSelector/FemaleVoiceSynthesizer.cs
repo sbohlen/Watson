@@ -6,7 +6,7 @@ namespace WinnerSelector
 {
     public class FemaleVoiceSynthesizer : ICanTalk
     {
-        private SpeechSynthesizer _engine;
+        private readonly SpeechSynthesizer _engine;
 
         public FemaleVoiceSynthesizer()
         {
