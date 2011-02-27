@@ -10,6 +10,11 @@ namespace WinnerSelector
             Lastname = lastname;
         }
 
+        public string Fullname
+        {
+            get { return string.Format("{0} {1}", Firstname, Lastname); }
+        }
+
         public string Firstname { get; private set; }
         public string Lastname { get; private set; }
     }

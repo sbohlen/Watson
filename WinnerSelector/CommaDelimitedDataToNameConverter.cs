@@ -16,8 +16,8 @@ namespace WinnerSelector
 
                 var split = item.Split(",".ToCharArray());
 
-                string firstname;
-                string lastname;
+                string firstname = string.Empty;
+                string lastname = string.Empty;
 
                 if (split.Length > 1)
                 {
@@ -27,7 +27,7 @@ namespace WinnerSelector
                 else
                 {
                     firstname = item;
-                    lastname = "n/a";
+                    lastname = "not found";
                 }
 
                 yield return new Name(firstname, lastname);

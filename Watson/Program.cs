@@ -16,7 +16,7 @@ namespace Watson
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Watson(new CandidateListBuilder(new DataFileReader(), new CommaDelimitedDataToNameConverter())));
+            Application.Run(new Watson(new CandidateListBuilder(new DataFileReader(), new CommaDelimitedDataToNameConverter()),new TextToSpeech()));
         }
     }
 }
