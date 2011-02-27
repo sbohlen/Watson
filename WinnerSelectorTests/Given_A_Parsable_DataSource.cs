@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -22,10 +21,10 @@ namespace WinnerSelectorTests
             string pathToFile = "data.txt";
 
             IDataFileReader reader = MockRepository.GenerateStub<IDataFileReader>();
-            _stringsToReturn = new List<string>() { "First Person", "Second Person" };
+            _stringsToReturn = new List<string>() { "First,Person", "Second,Person" };
             reader.Stub(r => r.ReadFile(pathToFile)).Return(_stringsToReturn);
 
-            var listBuilder = new CandidateListBuilder(reader, new TabDelimitedDataInterpreter());
+            var listBuilder = new CandidateListBuilder(reader, new CommaDelimitedDataToNameConverter());
 
             _candidates = listBuilder.Build(pathToFile);
         }
@@ -34,27 +33,6 @@ namespace WinnerSelectorTests
         public void Can_Return_List_Of_Candidates()
         {
             Assert.That(_candidates.Count(), Is.EqualTo(_stringsToReturn.Count()));
-        }
-    }
-
-
-    public class DataFileReader : IDataFileReader
-    {
-        public IEnumerable<string> ReadFile(string pathToFile)
-        {
-            var data = new List<string>();
-
-            using (var readFile = new StreamReader(pathToFile))
-            {
-                string line;
-
-                while ((line = readFile.ReadLine()) != null)
-                {
-                    data.Add(line);
-                }
-            }
-
-            return data;
         }
     }
 }

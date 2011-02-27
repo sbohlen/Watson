@@ -4,22 +4,22 @@ namespace WinnerSelector
 {
     public class CandidateListBuilder
     {
-        private readonly IDataInterpreter _interpreter;
+        private readonly IDataToNameConverter _toNameConverter;
         private readonly IDataFileReader _reader;
 
-        public CandidateListBuilder(IDataFileReader reader, IDataInterpreter interpreter)
+        public CandidateListBuilder(IDataFileReader reader, IDataToNameConverter toNameConverter)
         {
             _reader = reader;
-            _interpreter = interpreter;
+            _toNameConverter = toNameConverter;
         }
 
 
         public IEnumerable<Candidate> Build(string pathToFile)
         {
             IEnumerable<string> data = _reader.ReadFile(pathToFile);
-            IEnumerable<string> names = _interpreter.ConvertData(data);
+            IEnumerable<Name> names = _toNameConverter.Convert(data);
 
-            foreach (string name in names)
+            foreach (Name name in names)
             {
                 yield return new Candidate(name);
             }

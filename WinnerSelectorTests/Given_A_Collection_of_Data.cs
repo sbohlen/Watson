@@ -9,24 +9,24 @@ namespace WinnerSelectorTests
     [TestFixture]
     public class Given_A_Collection_of_Data
     {
-        private IEnumerable<string> _results;
+        private IEnumerable<Name> _results;
 
         [SetUp]
         public void When_Parsing()
         {
-            var interpreter = new TabDelimitedDataInterpreter();
+            var converter = new CommaDelimitedDataToNameConverter();
 
-            var data = new List<string>() { "First\tPerson", "Second\tPerson", "Third\tPerson" };
+            var data = new List<string>() { "First,Person", "Second,Person", "Third,Person" };
 
-            _results = interpreter.ConvertData(data);
+            _results = converter.Convert(data);
         }
 
         [Test]
         public void Can_Convert_To_Assignable_Names()
         {
-            Assert.That(_results.ElementAt(0), Is.EqualTo(string.Format("First{0}Person", Environment.NewLine)));
-            Assert.That(_results.ElementAt(1), Is.EqualTo(string.Format("Second{0}Person", Environment.NewLine)));
-            Assert.That(_results.ElementAt(2), Is.EqualTo(string.Format("Third{0}Person", Environment.NewLine)));
+            Assert.That(_results.ElementAt(0), Is.EqualTo(new Name("First","Person")));
+            Assert.That(_results.ElementAt(1), Is.EqualTo(new Name("Second","Person")));
+            Assert.That(_results.ElementAt(2), Is.EqualTo(new Name("Third","Person")));
         }
 
         [Test]

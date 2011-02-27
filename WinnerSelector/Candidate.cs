@@ -2,11 +2,11 @@
 {
     public class Candidate
     {
-        public Candidate(string name)
+        public Candidate(Name name)
         {
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public Name Name { get; private set; }
     }
 }

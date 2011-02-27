@@ -40,6 +40,9 @@
     <Reference Include="pnunit.framework">
       <HintPath>..\packages\NUnit.2.5.9.10348\lib\pnunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Proteus.Domain.Foundation">
+      <HintPath>..\packages\Proteus.Domain.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\packages\Rhino.Mocks.dll</HintPath>
     </Reference>
