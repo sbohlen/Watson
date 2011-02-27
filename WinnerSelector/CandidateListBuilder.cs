@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
-namespace WinnerSelectorTests
+namespace WinnerSelector
 {
     public class CandidateListBuilder
     {
@@ -16,6 +15,11 @@ namespace WinnerSelectorTests
         }
 
 
+        /// <summary>
+        /// Converts the data to names.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private IEnumerable<string> ConvertDataToNames(IEnumerable<string> data)
         {
             foreach (var item in data)

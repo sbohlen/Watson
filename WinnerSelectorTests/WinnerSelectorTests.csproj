@@ -52,15 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Candidate.cs" />
-    <Compile Include="CandidateListBuilder.cs" />
     <Compile Include="Given_A_Data_File.cs" />
     <Compile Include="Given_A_Parsable_DataSource.cs" />
-    <Compile Include="IDataFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinnerSelector\WinnerSelector.csproj">
+      <Project>{A92FB104-B719-4900-84F2-B2AC8B60AE07}</Project>
+      <Name>WinnerSelector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

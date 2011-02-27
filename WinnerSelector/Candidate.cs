@@ -1,4 +1,4 @@
-﻿namespace WinnerSelectorTests
+﻿namespace WinnerSelector
 {
     public class Candidate
     {
