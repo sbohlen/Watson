@@ -58,5 +58,11 @@ namespace Watson
 
             _speaker.Speak(response);
         }
+
+        private void imgWatson_Click(object sender, EventArgs e)
+        {
+            _speaker.Speak("This is a volume test.  Please adjust volume as needed.");
+        }
+
     }
 }
